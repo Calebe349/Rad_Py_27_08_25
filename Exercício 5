@@ -1,0 +1,20 @@
+# 5) (Dados ordenados) Dado os arquivos “lista_a.txt” e “lista_b.txt” (um item por linha), gere um
+#arquivo novo “lista_uniq.txt” com itens únicos ordenados. Se algum arquivo não puder ser lido,
+#avise no terminal e prossiga com o que der. Dica: Use set() + sorted(); capture FileNotFoundError
+#separadamente.
+
+
+itens = set()
+
+for arquivo in ("lista_a.txt", "lista_b.txt"):
+    try:
+        with open(arquivo, "r", encoding="utf-8") as f:
+            itens.update(l.strip() for l in f if l.strip())
+    except FileNotFoundError:
+        print(f"⚠️ Arquivo {arquivo} não encontrado, prosseguindo sem ele.")
+
+with open("lista_uniq.txt", "w", encoding="utf-8") as f:
+    for item in sorted(itens):
+        f.write(item + "\n")
+
+print("Arquivo lista_uniq.txt criado.")
