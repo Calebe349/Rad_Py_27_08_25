@@ -1,0 +1,14 @@
+# 1) (Ler ou criar arquivo) Abra “notas.txt” em modo leitura. Se não existir, capture FileNotFoundError
+#e crie o arquivo com o texto “Arquivo criado.”, depois leia e imprima o conteúdo.
+
+try:
+    with open("notas.txt", "r", encoding="utf-8") as f:
+        conteudo = f.read()
+except FileNotFoundError:
+    with open("notas.txt", "w", encoding="utf-8") as f:
+        f.write("Arquivo criado.")
+    with open("notas.txt", "r", encoding="utf-8") as f:
+        conteudo = f.read()
+
+print("Conteúdo de notas.txt:")
+print(conteudo)
