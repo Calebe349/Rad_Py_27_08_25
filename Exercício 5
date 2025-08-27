@@ -11,7 +11,7 @@ for arquivo in ("lista_a.txt", "lista_b.txt"):
         with open(arquivo, "r", encoding="utf-8") as f:
             itens.update(l.strip() for l in f if l.strip())
     except FileNotFoundError:
-        print(f"⚠️ Arquivo {arquivo} não encontrado, prosseguindo sem ele.")
+        print(f"Arquivo {arquivo} não encontrado, prosseguindo sem ele.")
 
 with open("lista_uniq.txt", "w", encoding="utf-8") as f:
     for item in sorted(itens):
