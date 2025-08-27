@@ -1,0 +1,19 @@
+# 7) (Mesclar listas sem duplicatas) Leia “lista_a.txt” e “lista_b.txt” (um item por linha), junte tudo,
+#remova duplicatas e salve em “lista_unica.txt” em ordem alfabética. Se um dos arquivos faltar,
+#processe apenas o que existir e avise no terminal.
+
+
+itens = set()
+
+for arquivo in ("lista_a.txt", "lista_b.txt"):
+    try:
+        with open(arquivo, "r", encoding="utf-8") as f:
+            itens.update(l.strip() for l in f if l.strip())
+    except FileNotFoundError:
+        print(f"Arquivo {arquivo} não encontrado.")
+
+with open("lista_unica.txt", "w", encoding="utf-8") as f:
+    for item in sorted(itens):
+        f.write(item + "\n")
+
+print("Arquivo lista_unica.txt criado.")
