@@ -1,0 +1,19 @@
+# 6) (Palavras únicas) Leia “texto.txt”, transforme em minúsculas, remova pontuação básica e mostre a
+#quantidade de palavras distintas. Trate FileNotFoundError e mostre “Arquivo texto.txt não
+#encontrado”.
+
+
+import string
+
+try:
+    with open("texto.txt", "r", encoding="utf-8") as f:
+        texto = f.read().lower()
+
+    for p in string.punctuation:
+        texto = texto.replace(p, " ")
+
+    palavras = set(texto.split())
+    print(f"Quantidade de palavras distintas: {len(palavras)}")
+
+except FileNotFoundError:
+    print("Arquivo texto.txt não encontrado")
