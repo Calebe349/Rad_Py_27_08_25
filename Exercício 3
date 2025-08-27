@@ -1,0 +1,24 @@
+# 3) (Normalizar espaços e pontos) Leia “comentarios.txt”, remova espaços duplos e troque
+#reticências “...” por um único “.”. Salve em “comentarios_limpos.txt”. Use try/except para lidar
+#com UnicodeDecodeError (tente utf-8 e, se falhar, latin-1).
+
+
+def limpar_comentarios():
+    for encoding in ("utf-8", "latin-1"):
+        try:
+            with open("comentarios.txt", "r", encoding=encoding) as f:
+                texto = f.read()
+            break
+        except UnicodeDecodeError:
+            continue
+    else:
+        print("Erro ao decodificar comentarios.txt")
+        exit()
+
+    texto = texto.replace("...", ".").replace("  ", " ")
+    with open("comentarios_limpos.txt", "w", encoding="utf-8") as f:
+        f.write(texto)
+
+    print("Arquivo comentarios_limpos.txt gerado com sucesso.")
+
+limpar_comentarios()
