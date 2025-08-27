@@ -1,0 +1,11 @@
+# 2) (Contar linhas não vazias) Leia um arquivo “frases.txt” e exiba quantas linhas não estão vazias
+#(desconsidere espaços). Trate PermissionError imprimindo uma mensagem amigável.
+
+
+try:
+    with open("frases.txt", "r", encoding="utf-8") as f:
+        linhas = f.readlines()
+    nao_vazias = [l for l in linhas if l.strip()]
+    print(f"Quantidade de linhas não vazias: {len(nao_vazias)}")
+except PermissionError:
+    print("Permissão negada para ler o arquivo frases.txt")
