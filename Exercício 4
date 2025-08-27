@@ -1,0 +1,17 @@
+# 4) (Nome e time separados por vírgula) De “jogadores_times.txt”, para cada linha com vírgula,
+#separe na primeira vírgula e monte um dicionário {nome: time}. Ignore linhas inválidas (sem
+#vírgula) e registre-as em “linhas_invalidas.log”. Use try/except no split e na escrita do log.
+
+
+jogadores = {}
+
+with open("jogadores_times.txt", "r", encoding="utf-8") as f:
+    for linha in f:
+        try:
+            nome, time = linha.strip().split(",", 1)
+            jogadores[nome.strip()] = time.strip()
+        except Exception:
+            with open("linhas_invalidas.log", "a", encoding="utf-8") as log:
+                log.write(linha)
+
+print("Dicionário jogadores:", jogadores)
